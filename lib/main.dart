@@ -38,10 +38,10 @@ class MyApp extends StatelessWidget {
                 onTap: (int index){
                   BlocProvider.of<GlobalBloc>(ctx).add(SetNavigationBarIndexEvent(index:index));
                 },
-                items:  [
+                items:  const [
                   BottomNavigationBarItem(
                     icon: Icon(Icons.account_balance_rounded),
-                    label: state.language
+                    label: "Home"
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.account_circle_outlined),
