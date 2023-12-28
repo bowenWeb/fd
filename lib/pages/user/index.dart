@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/bloc/user/user_bloc.dart';
-import 'package:untitled/models/user.dart';
+import 'package:get/get.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -20,32 +17,14 @@ class _UserPageState extends State<UserPage> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("User"),
+        title: Text("user".tr),
       ),
-      body: Center(
-          child: BlocProvider(
-              create: (context) => UserBloc()..add(
-                  const UpdateUserEvent(
-                    user: User(
-                        username: "wubowen",
-                        age: "18"
-                    )
-                  )
-              ),
-              child: BlocBuilder<UserBloc, UserState>(
-                builder: (context, state) {
-                  return Text("姓名：${state.user.username},年龄：${state.user.age}");
-                },
-              )
-          ),
-      ),
+      body: const Center(child: Text("姓名：,年龄：")),
     );
   }
 }

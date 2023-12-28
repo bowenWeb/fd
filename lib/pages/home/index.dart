@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/bloc/home/home_bloc.dart';
-import 'package:untitled/generated/l10n.dart';
+import 'package:get/get.dart';
+
+import '../../getx/home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,51 +11,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
+    homeStore.getClustersList();
     super.initState();
   }
 
-  Future<void> getCluster() async {
-
-  }
-
+  final HomeStoreController homeStore = Get.put(HomeStoreController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(S.of(context).home),
-      ),
-
-      body: Center(
-        child: BlocProvider(
-          create: (context) => HomeBloc()..add(const GetClusterListEvent()),
-          child: BlocBuilder<HomeBloc, HomeState>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: state.clusters.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Map item = state.clusters[index];
-                        return GestureDetector(
-                          child: ListTile(title: Text("${item['clusterName']}")),
-                          onTap: (){
-                            Navigator.of(context).pushNamed('/detail',arguments: {"clusterName":item['clusterName']});
-                          },
-                        );
-                      }
-                    ),
-                  ),
-                ],
-              );
-            },
-          )
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text("home".tr),
         ),
-      ),
-    );
+        body: GetBuilder<HomeStoreController>(builder: (controller) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                    itemCount: controller.clusters.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Map item = controller.clusters[index];
+                      return GestureDetector(
+                        child: ListTile(title: Text("${item['clusterName']}")),
+                        onTap: () {
+                          Get.toNamed('/detail',
+                              arguments: {"clusterName": item['clusterName']});
+                        },
+                      );
+                    }),
+              ),
+            ],
+          );
+        }));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -16,18 +17,15 @@ class _DetailPageState extends State<DetailPage> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    final Map args = ModalRoute.of(context)?.settings.arguments as Map;
+    final clusterName = Get.arguments['clusterName'];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Detail'),
       ),
-      body:  Center(
-          child: Text("Detail:${args['clusterName']}")
-      ),
+      body: Center(child: Text("Detail:${clusterName}")),
     );
   }
 }
