@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../models/language.dart';
 
@@ -19,10 +20,8 @@ class GlobalBloc extends Bloc<GlobalEvent, GlobalState> {
       emit(state.copyWith(language: event.language));
     });
 
-    on<SetContextEvent>((event, emit) {
-      emit(state.copyWith(context: event.context));
+    on<SetThemeEvent>((event, emit) {
+      emit(state.copyWith(theme: event.theme));
     });
-
-
   }
 }

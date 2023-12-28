@@ -6,14 +6,14 @@ abstract class GlobalEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class SetNavigationBarIndexEvent extends GlobalEvent{
+class SetNavigationBarIndexEvent extends GlobalEvent {
   final int index;
   const SetNavigationBarIndexEvent({required this.index});
   @override
   List<Object?> get props => [index];
 }
 
-class SetLanguageEvent extends GlobalEvent{
+class SetLanguageEvent extends GlobalEvent {
   final String language;
   const SetLanguageEvent({required this.language});
 
@@ -21,11 +21,10 @@ class SetLanguageEvent extends GlobalEvent{
   List<Object?> get props => [language];
 }
 
-class SetContextEvent extends GlobalEvent{
-  final GlobalKey context;
-  const SetContextEvent({required this.context});
+class SetThemeEvent extends GlobalEvent {
+  final ThemeData theme;
+  const SetThemeEvent({required this.theme});
 
   @override
-  List<Object?> get props => [context];
+  List<Object?> get props => [theme];
 }
-

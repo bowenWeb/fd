@@ -20,8 +20,6 @@ class _UserPageState extends State<UserPage> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,21 +28,15 @@ class _UserPageState extends State<UserPage> {
         title: Text("User"),
       ),
       body: Center(
-          child: BlocProvider(
-              create: (context) => UserBloc()..add(
-                  const UpdateUserEvent(
-                    user: User(
-                        username: "wubowen",
-                        age: "18"
-                    )
-                  )
-              ),
-              child: BlocBuilder<UserBloc, UserState>(
-                builder: (context, state) {
-                  return Text("姓名：${state.user.username},年龄：${state.user.age}");
-                },
-              )
-          ),
+        child: BlocProvider(
+            create: (context) => UserBloc()
+              ..add(const UpdateUserEvent(
+                  user: User(username: "iwen", age: "18"))),
+            child: BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                return Text("姓名：${state.user.username},年龄：${state.user.age}");
+              },
+            )),
       ),
     );
   }
