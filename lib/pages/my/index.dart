@@ -12,6 +12,7 @@ class MyPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("My"),
       ),
+      // GlobalBloc 实例已经 在最上层 main.dart 创建了子页面就不能创建了，不然不是一个实例了，直接用 BlocBuilder就好了
       body: BlocBuilder<GlobalBloc, GlobalState>(
         builder: (context, state) {
           return Padding(
