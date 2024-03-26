@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       const MyPage(),
     ];
     return BlocProvider(
+      // GlobalBloc 实例 在最上层 main.dart 创建，子页面就不能创建了，不然不是一个实例了，直接用 BlocBuilder就好了，例如 my 页面中
       create: (BuildContext context) => GlobalBloc(),
       child: BlocBuilder<GlobalBloc, GlobalState>(builder: (context, state) {
         return MaterialApp(
